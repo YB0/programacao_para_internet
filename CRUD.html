@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title> Lista telefônica </title>
+  
+</head>
+
+<body>
+
+  <script>
+
+    class Contato {
+
+      constructor(nome, numero, salvo) {
+
+        this.nome = nome;
+        this.numero = numero;
+        this.salvo = salvo ? true : false;
+      
+      }
+
+    }
+
+    const agenda = [];
+    
+    var opcao = 0;
+    
+    do {
+
+      opcao = prompt("Escolha uma opção: \n 1. novo número \n 2. pesquisar contato \n 3. listar contatos \n 4. atualizar contato \n 5. remover contato \n 0. sair");
+      
+      if (opcao == 1)
+        
+        adicionar ()
+      
+      else if (opcao == 2)
+        
+        pesquisar ()
+      
+      else if (opcao == 3)
+        
+        listar ()
+      
+      else if (opcao == 4)
+        
+        atualizar ()
+
+      else if (opcao == 5)
+
+        excluir ()
+    
+      } while (opcao != 0)
+
+
+    function adicionar() {
+
+      const nome = prompt("Digite o nome do contato: ");
+      const numero = prompt("Digite o número do contato: ");
+      const contato = new Contato(nome, numero, true);
+      agenda.push(contato);
+
+    }
+
+    function pesquisar () {
+
+      const nome = prompt("Digite o nome do contato que voce deseja pesquisar: ");
+      var contato_pesquisado = "";
+
+      agenda.forEach(contato => {
+      
+      if (contato.nome == nome && contato.salvo == true)
+
+        contato_pesquisado += `nome: ${contato.nome} \nnúmero: ${contato.numero} \n-------------------- \n`;
+
+      });
+
+      alert(contato_pesquisado);
+
+    }
+
+    function listar () {
+
+      var lista_telefonica = "";
+
+      agenda.forEach(contato => {
+        
+        if (contato.salvo == true)
+        
+          lista_telefonica += `nome: ${contato.nome} \nnúmero: ${contato.numero} \n-------------------- \n`;
+        
+        });
+
+      alert(lista_telefonica);
+
+    }
+
+    function atualizar () {
+
+      const nome = prompt("Digite o nome do contato que voce deseja editar: ");
+
+      agenda.forEach(contato => {
+
+        if (contato.nome == nome && contato.salvo == true)
+
+          contato.nome = prompt("Digite o novo nome: ");
+          contato.numero = prompt("Digite o novo numero: ");
+
+          alert("Contato atualizado com sucesso!");
+
+        });
+        
+    }
+
+    function excluir () {
+
+      const nome = prompt("Digite o nome do contato que voce deseja excluir: ");
+
+      agenda.forEach(contato => {
+
+        if (contato.nome == nome)
+
+          contato.salvo = false;
+        
+      });
+
+    }
+
+  </script>
+
+</body>
+
+</html>
